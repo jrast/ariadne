@@ -6,7 +6,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from ariadne import ResolverMap, make_executable_schema
+from ariadne import ObjectType, make_executable_schema
 from ariadne.wsgi import GraphQL, GraphQLMiddleware
 
 
@@ -30,9 +30,9 @@ def resolve_status(*_):
 
 @pytest.fixture
 def resolvers():
-    query = ResolverMap("Query")
-    query.field("hello")(resolve_hello)
-    query.field("status")(resolve_status)
+    query = ObjectType("Query")
+    query.set_field("hello", resolve_hello)
+    query.set_field("status", resolve_status)
     return query
 
 
