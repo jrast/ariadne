@@ -18,7 +18,7 @@ You can use the ``server_class`` keyword argument to use ``start_simple_server``
 
     from ariadne import make_executable_schema, start_simple_server
     from ariadne.wsgi import GraphQL
-    from . import type_defs, resolvers
+    from . import type_defs, types
 
 
     class MyGraphQL(GraphQL):
@@ -26,7 +26,7 @@ You can use the ``server_class`` keyword argument to use ``start_simple_server``
             return MyContext(environ, request_data)
 
 
-    schema = make_executable_schema(type_defs, resolvers)
+    schema = make_executable_schema(type_defs, types)
     start_simple_server(schema, server_class=MyGraphQL)
 
 .. warning::
